@@ -81,11 +81,12 @@ def main():
         save_model(model, model_name)
         print("Model %s saved."%(model_name))
     elif sys.argv[1] == "predict":
-        if len(arguments) < 2:
-            print("Usage : python classifier.py predict <image path>")
+        if len(arguments) < 3:
+            print("Usage : python classifier.py predict <model name> <image path>")
             exit(1)
         
-        image_path = arguments[1]
+        model_name = arguments[1]
+        image_path = arguments[2]
 
         loaded_model = tc.load_model(model_name + ".model")
         prediction = model_predict(loaded_model, image_path)
