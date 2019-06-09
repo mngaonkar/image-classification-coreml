@@ -16,5 +16,5 @@ The sub-folders will be used a lables for classification.
 - Models will be saved in the current folder as *\<top-folder-name\>*.model and *\<top-folder-name\>*.mlmodel. In above example, it will be saved as food.model and food.mlmodel
 
 ## Prediction
-- `python classification.py predict <path to test data file>`. For example,
-`python classification.py predict ./datasets/food/rice/7_92.jpg`
+- `python classification.py predict <model name> <path to test data file>`. For example,
+`python classification.py predict food ./datasets/food/rice/7_92.jpg`
