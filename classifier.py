@@ -1,5 +1,6 @@
 import turicreate as tc
 import sys
+import os
 
 """
 Predict the classification
@@ -38,18 +39,13 @@ def save_model(model, name):
 Lable images and create sframe, folder name is used as data label
 """
 def load_dataset(folder_path):
-    sframe_name = "rice_or_soup.sframe"  
+    sframe_name = "datasets.sframe"  
 
     # annotate images
     images = tc.image_analysis.load_images(folder_path, with_path = True)
-    images["type"] = images["path"].apply(lambda path: "rice" if "rice" in path else "soup")
+    # images["type"] = images["path"].apply(lambda path: "rice" if "rice" in path else "soup")
+    images["type"] = images["path"].apply(lambda path: os.path.basename(os.path.dirname(path)))
     images.save(sframe_name)
-
-    # load only soup images for testing
-    soup_images = tc.image_analysis.load_images("dataset/food/soup/")
-    soup_images["type"] = soup_images["path"].apply(lambda path: "soup" if "soup" in path else "rice")
-    soup_images.save("soup.sframe")
-    test_buffer = tc.SFrame("soup.sframe")
 
     return sframe_name
 
@@ -66,8 +62,14 @@ def main():
     model_name = "RiceOrSoup"
 
     if sys.argv[1] == "train":
+        if len(arguments) < 2:
+            print "Usage : python classifier.py train <dataset path>"
+            exit(1)
+
+        dataset_path = arguments[1]
+
         print "Loading dataset..."
-        sframe = load_dataset("dataset/food")
+        sframe = load_dataset(dataset_path)
         print "Dataset loaded."
 
         print "Creating model..."
