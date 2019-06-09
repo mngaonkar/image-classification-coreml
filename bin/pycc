@@ -1,0 +1,3 @@
+#!/Users/mahadev/Library/Mobile Documents/com~apple~CloudDocs/Code/Python/turi/bin/python2.7
+from numba.pycc import main
+main()
