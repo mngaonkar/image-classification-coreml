@@ -8,10 +8,10 @@ Predict the classification
 def model_predict(model, image_path):
     image = tc.Image(image_path)
     image_sframe = tc.SFrame({'path': [image_path], 'image': [image], 'type':['']})
-    print "Image SFrame : \n", image_sframe
+    print("Image SFrame : \n", image_sframe)
 
     prediction = model.predict(image_sframe)
-    print "Prediction : \n", prediction
+    print("Prediction : \n", prediction)
 
 
 """
@@ -55,33 +55,34 @@ def explore_dataset(dataset):
 def main():
     arguments = sys.argv[1:]
     if len(arguments) < 1:
-        print "Invalid arguments"
-        print "Usage : python classifier.py [train | predict]"
+        print("Invalid arguments")
+        print("Usage : python classifier.py [train | predict]")
         exit(1)
 
-    model_name = "RiceOrSoup"
+    model_name = "default"
 
     if sys.argv[1] == "train":
         if len(arguments) < 2:
-            print "Usage : python classifier.py train <dataset path>"
+            print("Usage : python classifier.py train <dataset path>")
             exit(1)
 
         dataset_path = arguments[1]
+        model_name = os.path.basename(os.path.dirname(dataset_path))
 
-        print "Loading dataset..."
+        print("Loading dataset...")
         sframe = load_dataset(dataset_path)
-        print "Dataset loaded."
+        print("Dataset loaded.")
 
-        print "Creating model..."
+        print("Creating model...")
         model = create_classifier(sframe, "squeezenet_v1.1", "type")
-        print "Model created."
+        print("Model created.")
 
-        print "Saving model..."
+        print("Saving model...")
         save_model(model, model_name)
-        print "Model %s saved."%(model_name)
+        print("Model %s saved."%(model_name))
     elif sys.argv[1] == "predict":
         if len(arguments) < 2:
-            print "Usage : python classifier.py predict <image path>"
+            print("Usage : python classifier.py predict <image path>")
             exit(1)
         
         image_path = arguments[1]
@@ -89,8 +90,8 @@ def main():
         loaded_model = tc.load_model(model_name + ".model")
         prediction = model_predict(loaded_model, image_path)
     else:
-        print "Invalid arguments"
-        print "Usage : python classifier.py [train | predict]"
+        print("Invalid arguments")
+        print("Usage : python classifier.py [train | predict]")
 
 if __name__ == "__main__":
     main()
