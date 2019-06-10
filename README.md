@@ -16,9 +16,9 @@ Build a CoreML classification model with following commands.
 - Create a folder for storing training data. The name of the folder will be used as name of the model saved at the end.
 - Create multiple folders inside the main folder containing data to be classified. For example, if you are classifying food then here is typical folder hierarchy. \
 /food \
-/food/bananas \
-/food/oranges \
-/food/apples \
+/food/pasta \
+/food/pizza \
+/food/burger \
 The sub-folders will be used a lables for classification.
 
 - `python classification.py train <path to training data>`. For example, `python classification.py train ./food`
@@ -26,4 +26,4 @@ The sub-folders will be used a lables for classification.
 
 ## Prediction
 - `python classification.py predict <model name> <path to test data file>`. For example,
-`python classification.py predict food ./datasets/food/rice/7_92.jpg`
+`python classification.py predict food ./datasets/food/burger/7_92.jpg`
