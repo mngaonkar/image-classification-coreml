@@ -4,6 +4,11 @@
 - Python 3.6.5
 - Virtualenv 16.6.0
 
+## Setup
+- `git clone https://github.com/mngaonkar/image-classification-coreml.git`
+- `virtualenv image-classification-coreml/`
+- `pip install -r requirements.txt`
+
 Build a CoreML classification model with following commands.
 
 ## Training
