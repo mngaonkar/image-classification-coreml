@@ -1,5 +1,9 @@
 # Image classification using CoreML and Turi Create
 
+## Pre-requisite
+- Python 3.6.5
+- Virtualenv 16.6.0
+
 Build a CoreML classification model with following commands.
 
 ## Training
