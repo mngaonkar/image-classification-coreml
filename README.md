@@ -21,9 +21,9 @@ Build a CoreML classification model with following commands.
 /food/burger \
 The sub-folders will be used a lables for classification.
 
-- `python classifier.py train <path to training data>`. For example, `python classification.py train ./food`
+- `python classifier.py train <path to training data>`. For example, `python classifier.py train ./food`
 - Models will be saved in the current folder as *\<top-folder-name\>*.model and *\<top-folder-name\>*.mlmodel. In above example, it will be saved as food.model and food.mlmodel
 
 ## Prediction
-- `python classification.py predict <model name> <path to test data file>`. For example,
+- `python classifier.py predict <model name> <path to test data file>`. For example,
 `python classifier.py predict food ./datasets/food/burger/7_92.jpg`
