@@ -12,6 +12,8 @@ def model_predict(model, image_path):
 
     prediction = model.predict(image_sframe)
     print("Prediction : \n", prediction)
+    probability = model.predict_topk(image_sframe, output_type="probability")
+    print("Probability : \n", probability)
 
 
 """
