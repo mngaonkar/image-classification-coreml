@@ -32,7 +32,7 @@ Save model in native and CoreML format
 """
 def save_model(model, name):
     model.save(name + ".model")
-    model.export_coreml(name + ".mlmodel")
+    # model.export_coreml(name + ".mlmodel")
 
 
 """
@@ -67,7 +67,8 @@ def main():
             exit(1)
 
         dataset_path = arguments[1]
-        model_name = os.path.basename(os.path.dirname(dataset_path))
+        print("dataset path is ", dataset_path)
+        model_name = os.path.basename(dataset_path)
 
         print("Loading dataset...")
         sframe = load_dataset(dataset_path)
@@ -77,7 +78,7 @@ def main():
         model = create_classifier(sframe, "squeezenet_v1.1", "type")
         print("Model created.")
 
-        print("Saving model...")
+        print("Saving model as ", model_name)
         save_model(model, model_name)
         print("Model %s saved."%(model_name))
     elif sys.argv[1] == "predict":
