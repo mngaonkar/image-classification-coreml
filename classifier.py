@@ -32,8 +32,9 @@ def create_classifier(sframe_name, classifier_model_name, target_attribute):
 """
 Save model in native and CoreML format
 """
-def save_model(model, name):
-    model.save(name + ".model")
+def save_model(model, name, dataset_path):
+    path = os.path.join(dataset_path, name + ".model")
+    model.save(path)
     # model.export_coreml(name + ".mlmodel")
 
 
@@ -81,7 +82,7 @@ def main():
         print("Model created.")
 
         print("Saving model as ", model_name)
-        save_model(model, model_name)
+        save_model(model, model_name, dataset_path)
         print("Model %s saved."%(model_name))
     elif sys.argv[1] == "predict":
         if len(arguments) < 3:
